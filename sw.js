@@ -1,5 +1,5 @@
 // 秋白伴游：离线也能打开。同源的 GET 先用缓存、同时去网络取新的（下次打开就是新的）；接口请求不缓存。
-const CACHE = 'qiubai-v1';
+const CACHE = 'qiubai-v2';
 self.addEventListener('install', e => { self.skipWaiting(); e.waitUntil(caches.open(CACHE).then(c => c.addAll(['./', './manifest.webmanifest']).catch(() => {}))); });
 self.addEventListener('activate', e => e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== CACHE).map(k => caches.delete(k)))).then(() => self.clients.claim())));
 self.addEventListener('fetch', e => {
